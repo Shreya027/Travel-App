@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+
+<script >
+	var allQuestions = [{
+    question: "How many stars are there on the flag of China?",
+    choices: ["2", "5", "7"],
+    correctAnswer: 1
+  },
+
+  {
+    question: "What is the currency of Mongolia",
+    choices: ["Yena", "Kirgin", "Tugrik"],
+    correctAnswer: 2
+  },
+
+  {
+    question: "In which country is there a natural gas pit nicknamed the ‘Door to Hell’ that has been on fire since 1971?",
+    choices: ["Turkmenistan", "Azerbaijan", "Bulgaria", "Iceland"],
+    correctAnswer: 0
+  },
+
+  {
+    question: " In 2013 which two airlines merged to become the world’s largest airline? ",
+    choices: ["Air France and KLM", "American Airlines and US Airways", "British Airways and Iberia", "Lufthansa and Germanwings"],
+    correctAnswer: 1
+  },
+
+  {
+    question: "Jaktogos went on sale in 2013. What are they?",
+    choices: ["A hot potato snack, served with cheese and chilli, popular in Mexico", "Raincoats that tourists can buy from vending machines across the London Underground", "A jacket covered in pockets allowing passengers to pack everything into their coats"],
+    correctAnswer: 2
+  },
+
+  {
+    question: "Which celebrity was carried by their minders along the Great Wall of China?",
+    choices: ["Lady Gaga", "Justin Bieber", "Harry Styles", "Daniel Radcliffe"],
+    correctAnswer: 1
+  },
+
+  {
+    question: "In 1976, Saigon changed its name to …? ",
+    choices: ["Ho Chi Minh City", " Pattaya", "Hanoi"],
+    correctAnswer: 1
+  },
+
+  {
+    question: "Which country has more lakes than the rest of the world combined?",
+    choices: ["Finland", "China", "Norway", "Canada"],
+    correctAnswer: 3
+  },
+
+  {
+    question: "Which country has the world's highest waterfall?",
+    choices: ["America", "Japan", "Venezuela", "Uganda"],
+    correctAnswer: 2
+  },
+
+  {
+    question: "Persepolis FC is a football club of which country?",
+    choices: ["Turkey", "Greece", "Iran", "Egypt"],
+    correctAnswer: 2
+  },
+
+  {
+    question: "In 1999, this country was the top tourist destination in the world:",
+    choices: ["France", "United Kingdom", "United States"],
+    correctAnswer: 0
+  },
+
+  {
+    question: "If you wanted to visit the Black Forest, which country would you visit?",
+    choices: ["Russia", "Austria", "Germany", "Italy"],
+    correctAnswer: 2
+  },
+
+  {
+    question: "The world's longest subway system, which spans more than 390 km, is in this city: ",
+    choices: ["Moscow", "New York City", "London"],
+    correctAnswer: 2
+  },
+
+  {
+    question: "If you are traveling to the easternmost point in the United States, you would be going to which state",
+    choices: ["Maine", "Massachusetts", "Florida"],
+    correctAnswer: 0
+  },
+
+  {
+    question: "If you travel to these countries, and choose to rent a car, make sure to drive on the left side of the road:",
+    choices: ["Russia, Canada, Jamaica", "India, Ireland, Japan", "India, Italy, Jamaica", "None"],
+    correctAnswer: 1
+  }
+];
+var currentquestion = 0;
+var correctAnswers = 0;
+
+function setupOptions() {
+  $('#question').html(parseInt(currentquestion) + 1 + ". " + allQuestions[currentquestion].question);
+  var options = allQuestions[currentquestion].choices;
+  var formHtml = '';
+  for (var i = 0; i < options.length; i++) {
+    formHtml += '<div><input type="radio" name="option" value="' + i + '" id="option' + i + '"><label for="option' + i + '">' +
+      allQuestions[currentquestion].choices[i] + '</label></div><br/>';
+  }
+  $('#form').html(formHtml);
+  $("#option0").prop('checked', true);
+};
+
+function checkAns() {
+  if ($("input[name=option]:checked").val() == allQuestions[currentquestion].correctAnswer) {
+    correctAnswers++;
+  };
+};
+
+$(document).ready(function() {
+
+  $(".jumbotron").hide();
+  $('#start').click(function() {
+    $(".jumbotron").fadeIn();
+    $(this).hide();
+  });
+
+  $(function() {
+    $("#progressbar").progressbar({
+      max: allQuestions.length - 1,
+      value: 0
+    });
+  });
+
+  setupOptions();
+
+  $("#next").click(function() {
+    event.preventDefault();
+    checkAns();
+    currentquestion++;
+    $(function() {
+      $("#progressbar").progressbar({
+        value: currentquestion
+      });
+    });
+    if (currentquestion < allQuestions.length) {
+      setupOptions();
+      if (currentquestion == allQuestions.length - 1) {
+        $('#next').html("Submit");
+        $('#next').click(function() {
+          $(".jumbotron").hide();
+          $("#result").html("You correctly answered " + correctAnswers + " out of " + currentquestion + " questions! ").hide();
+          $("#result").fadeIn(1500);
+        });
+
+      };
+
+    };
+  });
+});
+</script>
+<style type="text/css">
+	html, body, div, span, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+/*end of default style resetting*/
+
+h1 {
+  font-size: 20vw;
+  font-family: 'Chonburi', cursive;
+}
+
+.ui-widget-header {
+    background-image: none !important;
+    background-color: #2ECC71 !important; 
+}
+
+label{
+  display: inline;
+}  
+
+h3, #next {
+  text-align: center;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+#result {
+  font-family: 'Press Start 2P', cursive !important;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #036;
+}
+
+input[name="option"] {
+  float:left;
+  
+}
+
+#form div{
+  margin:auto;
+  max-width: 205px;
+}
+
+#progressbar {
+  margin: auto;
+  margin-top: 20px;
+  float: none; 
+  width: 50%;
+ }
+
+#container {
+  text-align: center;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+.button {
+    display: inline-block;
+    padding: 1em;
+    background-color: #79BD9A;
+    text-decoration: none !important; 
+    color: white !important;
+} 
+body{
+  text-align: center;
+}
+
+.progress-bar {
+  float: left;
+  width: 0;
+  /*height: 100%;*/
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #337ab7;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+  -webkit-transition: width .6s ease;
+       -o-transition: width .6s ease;
+          transition: width .6s ease;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+
+<!-- Navbar -->
+<ul class="w3-navbar w3-black w3-card-2 w3-top w3-left-align w3-large">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+  <li ><a href="/index/" class="w3-padding-large w3-hover-white">Home</a></li>
+  <li class="w3-hide-small"><a href="/list/" class="w3-padding-large w3-hover-white">To-do</a></li>
+  <li class="w3-hide-small"><a href="/contact/" class="w3-padding-large w3-white">Post</a></li>
+  <li class="w3-hide-small"><a href="/search/" class="w3-padding-large w3-hover-white">Search</a></li>
+  <li class="w3-hide-small"><a href="/country/" class="w3-padding-large w3-hover-white">Country</a></li>
+   <li class="w3-hide-small"><a href="/map/" class="w3-padding-large w3-hover-white">Sign-in</a></li>
+    <li class="w3-hide-small"><a href="/hotel/" class="w3-padding-large w3-hover-white">Hotel</a></li>
+    <li class="w3-hide-small"><a href="/direction/" class="w3-padding-large w3-hover-white">Direction</a></li>
+    <li class="w3-hide-small"><a href="/currency/" class="w3-padding-large w3-hover-white">Currency</a></li>
+    <li class="w3-hide-small"><a href="/quiz/" class="w3-padding-large w3-hover-white">Quiz</a></li>
+</ul>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+  <ul class="w3-navbar w3-left-align w3-large w3-black">
+    <li><a class="w3-padding-large" href="/index/">Home</a></li>
+    <li><a class="w3-padding-large" href="/list/">To-do</a></li>
+    <li><a class="w3-padding-large" href="/contact/">Post</a></li>
+    <li><a class="w3-padding-large" href="/search/">Search</a></li>
+    <li><a class="w3-padding-large" href="/country/">Country</a></li>
+    <li><a class="w3-padding-large" href="/map/">Sign-in</a></li>
+    <li><a class="w3-padding-large" href="/hotel/">Hotel</a></li>
+    <li><a class="w3-padding-large" href="/direction/">Direction</a></li>
+    <li><a class="w3-padding-large" href="/currency/">Currency</a></li>
+    <li><a class="w3-padding-large" href="/quiz/">Quiz</a></li>
+
+  </ul>
+</div>
+
+<h1>Quiz</h1>
+<br/>
+<br/>
+<a href="#" id="start" class="btn btn-primary btn-lg">Let's Begin</a>
+<br/>
+<div class="well jumbotron">
+  <h3 id="question"></h3>
+  <br/><br/>
+  <form id="form">
+
+  </form>
+  <br/>
+  <a href="#" id="next" class="button">Next</a><br/>
+  <div id="progressbar" class="progress-bar progress-bar-striped"></div>
+</div>
+<div id="result"></div>
+
+</body>
+</html>

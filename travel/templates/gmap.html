@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+      
+         background: url("{% static 'stone4.jpg' %}") no-repeat center center fixed ;
+  background-size:cover;
+
+        
+      }
+      #map {
+        position: absolute;
+        height: 500px;
+        width: 65%;
+          left: 240px;
+        top: 193px;
+
+      }
+      .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        height: 44px;
+        position: absolute;;
+          left: 240px;
+        top: 220px;
+        outline: none;
+       
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      .controls:focus {
+        border-color: #4d90fe;
+      }
+      h1 
+      { 
+        padding-left: 450px;
+        font-size: 30px;
+        font-style: italic;
+        padding-top: 70px;
+
+        color:#0066cc;
+        opacity: 0.8;
+      }
+    </style>
+
+
+
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  </head>
+  <body onload="initialize()">
+
+
+<!-- Navbar -->
+<ul class="w3-navbar w3-black w3-card-2 w3-top w3-left-align w3-large">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="/index/" class="w3-padding-large w3-hover-white">Home</a></li>
+  <li class="w3-hide-small"><a href="/list/" class="w3-padding-large w3-hover-white">To-do</a></li>
+  <li class="w3-hide-small"><a href="/contact/" class="w3-padding-large w3-hover-white">Post</a></li>
+  <li class="w3-hide-small"><a href="/search/" class="w3-padding-large w3-hover-white">Search</a></li>
+  <li class="w3-hide-small"><a href="/country/" class="w3-padding-large w3-hover-white">Country</a></li>
+   <li class="w3-hide-small"><a href="/map/" class="w3-padding-large w3-white">Sign-in</a></li>
+    <li class="w3-hide-small"><a href="/hotel/" class="w3-padding-large w3-hover-white">Hotel</a></li>
+    <li class="w3-hide-small"><a href="/direction/" class="w3-padding-large w3-hover-white">Direction</a></li>
+    <li class="w3-hide-small"><a href="/currency/" class="w3-padding-large w3-hover-white">Currency</a></li>
+    <li class="w3-hide-small"><a href="/quiz/" class="w3-padding-large w3-hover-white">Quiz</a></li>
+</ul>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+  <ul class="w3-navbar w3-left-align w3-large w3-black">
+    <li><a class="w3-padding-large" href="/index/">Home</a></li>
+    <li><a class="w3-padding-large" href="/list/">To-do</a></li>
+    <li><a class="w3-padding-large" href="/contact/">Post</a></li>
+    <li><a class="w3-padding-large" href="/search/">Search</a></li>
+    <li><a class="w3-padding-large" href="/country/">Country</a></li>
+    <li><a class="w3-padding-large" href="/map/">Sign-in</a></li>
+    <li><a class="w3-padding-large" href="/hotel/">Hotel</a></li>
+    <li><a class="w3-padding-large" href="/direction/">Direction</a></li>
+    <li><a class="w3-padding-large" href="/currency/">Currency</a></li>
+    <li><a class="w3-padding-large" href="/quiz/">Quiz</a></li>
+  </ul>
+</div>
+
+
+
+
+    <h1>Sign In And Save</h1>
+  
+    <input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location">
+    <div id="map"></div>
+
+    <script>
+      // This sample uses the Place Autocomplete widget to allow the user to search
+      // for and select a place. The sample then displays an info window containing
+      // the place ID and other information about the place that the user has
+      // selected.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+    
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 22.057437, lng: 58.93817289999993},
+          zoom: 3
+        });
+
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        autocomplete.addListener('place_changed', function() {
+          /*infowindow.close();*/
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+          
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
+          
+          addMarker (place.place_id , place.geometry.location ,map,place);
+            
+        
+          // Set the position of the marker using the place ID and location.
+          
+
+          });
+        
+          
+          function addMarker (a ,b, map,place)
+          {
+          var marker = new google.maps.Marker({
+          map: map,
+          attribution: {
+          source: 'Travel'
+          },
+          place:
+          {
+            placeId: a,
+            location: b
+          }
+          });  
+          marker.setVisible(true);
+          var infowindow = new google.maps.InfoWindow();
+         
+          infowindow.setContent('<div><strong>'+ place.name+ '</strong><br>' +
+              place.formatted_address + '<br>' + b+ '<div>');
+
+          marker.addListener('click', function() {
+          infowindow.open(map, marker);
+          });
+           
+          }
+          
+          }
+          </script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvCg-Ed0uayEUcNWIgVb_6pRV8imB5kEM&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title></title>
+
+
+
+<style type="text/css">
+	body {
+
+ background: url("{% static 'currency3.jpg' %}") no-repeat center center fixed ;
+  background-size:cover;
+padding-top: 200px;
+
+
+
+
+	}
+
+h1 {
+
+	text-align: center;
+	color: #0e2245;
+	font-style: italic;
+	font-size: 40px;
+
+}	
+
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+<body>
+
+
+<!-- Navbar -->
+<ul class="w3-navbar w3-black w3-card-2 w3-top w3-left-align w3-large">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="/index/" class="w3-padding-large w3-hover-white">Home</a></li>
+  <li class="w3-hide-small"><a href="/list/" class="w3-padding-large w3-hover-white">To-do</a></li>
+  <li class="w3-hide-small"><a href="/contact/" class="w3-padding-large w3-hover-white">Post</a></li>
+  <li class="w3-hide-small"><a href="/search/" class="w3-padding-large w3-hover-white">Search</a></li>
+  <li class="w3-hide-small"><a href="/country/" class="w3-padding-large w3-hover-white">Country</a></li>
+   <li class="w3-hide-small"><a href="/map/" class="w3-padding-large w3-hover-white">Sign-in</a></li>
+    <li class="w3-hide-small"><a href="/hotel/" class="w3-padding-large w3-hover-white">Hotel</a></li>
+    <li class="w3-hide-small"><a href="/direction/" class="w3-padding-large w3-hover-white">Direction</a></li>
+    <li class="w3-hide-small"><a href="/currency/" class="w3-padding-large w3-white">Currency</a></li>
+    <li class="w3-hide-small"><a href="/quiz/" class="w3-padding-large w3-hover-white">Quiz</a></li>
+</ul>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+  <ul class="w3-navbar w3-left-align w3-large w3-black">
+    <li><a class="w3-padding-large" href="/index/">Home</a></li>
+    <li><a class="w3-padding-large" href="/list/">To-do</a></li>
+    <li><a class="w3-padding-large" href="/contact/">Post</a></li>
+    <li><a class="w3-padding-large" href="/search/">Search</a></li>
+    <li><a class="w3-padding-large" href="/country/">Country</a></li>
+    <li><a class="w3-padding-large" href="/map/">Sign-in</a></li>
+    <li><a class="w3-padding-large" href="/hotel/">Hotel</a></li>
+    <li><a class="w3-padding-large" href="/direction/">Direction</a></li>
+    <li><a class="w3-padding-large" href="/currency/">Currency</a></li>
+    <li><a class="w3-padding-large" href="/quiz/">Quiz</a></li>
+  </ul>
+</div>
+
+
+<!--Currency Converter widget by FreeCurrencyRates.com -->
+
+<div id='gcw_mainFvdKDLr6G' class='gcw_mainFvdKDLr6G'></div>
+
+<script>function reloadFvdKDLr6G(){ var sc = document.getElementById('scFvdKDLr6G');if (sc) sc.parentNode.removeChild(sc);sc = document.createElement('script');sc.type = 'text/javascript';sc.charset = 'UTF-8';sc.async = true;sc.id='scFvdKDLr6G';sc.src = 'http://freecurrencyrates.com/en/widget-vertical?iso=USDEURGBPJPYCNYCADINRAEDHKDSGDNZD&df=2&p=FvdKDLr6G&v=fits&source=fcr&width=400&width_title=0&firstrowvalue=1&thm=A6C9E2,FCFDFD,4297D7,5C9CCC,FFFFFF,C5DBEC,FCFDFD,2E6E9E,000000&title=Currency%20Converter&tzo=-330';var div = document.getElementById('gcw_mainFvdKDLr6G');div.parentNode.insertBefore(sc, div);} reloadFvdKDLr6G(); </script>
+<!-- put custom styles here: .gcw_mainFvdKDLr6G{}, .gcw_headerFvdKDLr6G{}, .gcw_ratesFvdKDLr6G{}, .gcw_sourceFvdKDLr6G{} -->
+<!--End of Currency Converter widget by FreeCurrencyRates.com -->
+
+
+
+</body>
+</html>

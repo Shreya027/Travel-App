@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>Search</title>
+    <style type="text/css">
+    h1 {
+        background-color: #ff9980;
+        padding: 30px;
+        width: 80%;
+        border: black 3px solid;   
+
+    }
+    body {
+        background-color:#ffd966;
+        padding: 30px;
+    }
+    input {
+     border: none;
+     width: 50%;
+    padding: 16px;
+    font-size: 20px;
+    font-style: italic;
+
+}   
+    li{
+        background-color: #ff9980;
+        padding: 10px;
+        width: 30%;
+        font-size: 20px;
+        border: black 3px solid;
+
+    }
+
+        
+    </style>  
+</head>
+<body>
+    <h1> Choose a country from below </h1>
+    {% for x in full %}
+    <ul>
+    <li>{{x.name}}</li>
+    </ul>
+    {% endfor %}
+
+
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="Search">
+    </form>
+
+    {% if country %}
+        <!--<p>Found {{ travel|length }} name{{ travel|pluralize }}.</p> -->
+        <ul>
+            {% for place in country %}
+            <li>{{ place.name }}</li>
+            <!--<li>{{place.}}</li>
+            <li>{{place.state_province}}</li>
+            <li>{{place.country}}</li>
+            <li>{{place.notes}}</li>
+            <img src="/media/{{place.image}}">-->
+
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No names matched your search criteria.</p>
+    {% endif %}
+</body>
+</html>

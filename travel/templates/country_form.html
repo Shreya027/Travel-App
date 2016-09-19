@@ -1,0 +1,194 @@
+<html>
+{% load static %}
+<head>
+    <title>Search</title>
+
+    <style type="text/css">
+    h1 {
+        background-color:white;
+        padding: 10px;
+        width: 80%;
+        border: black 3px solid;   
+        opacity: 0.4;
+
+    }
+    body {
+         background: url(" {% static 'abstract.jpg' %} ") no-repeat center center fixed ;
+  background-size:cover;
+       
+
+    }
+    input {
+     border: none;
+     width: 95%;
+    
+    font-size: 15px;
+    font-style: italic;
+    padding:20px;
+
+
+
+}   
+    p{
+        background-color:white;
+        padding: 10px;
+        width: 40%;
+        font-size: 20px;
+        
+        opacity: 0.4;
+        text-align: center;
+
+    }
+    
+        .options {
+        background-color:white ;
+        padding: 20px;
+        width: 98%;
+        font-size: 20px;
+        opacity: 0.4;
+        font-weight: normal;
+        font-style: italic;
+        font-color:white;
+        word-spacing: 10px;
+        margin:50px;
+        margin-left: 14px;
+        
+
+    }
+    #s {
+
+        position: absolute;
+        top:350px;
+        left: 870px;
+         width:250px;
+        height: 250px; 
+        opacity: 0.3;
+        font-size: 60px;
+       
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        font-style: italic;;
+
+        
+    }
+    .sm {
+        background-color:white;
+        padding: 10px;
+        width: 34%;
+        font-size: 20px;
+        margin-left: 3px;
+        opacity: 0.4;
+        text-align: center;
+
+    }
+
+    #shift {
+        position: absolute;
+        top:275px;
+        left:500px;
+    
+
+    }
+
+    #move {
+        
+    }
+   
+    </style>  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+    <!--<h1> Choose a country from below </h1>-->
+    <!--<ul>
+    {% for x in full %}
+    
+    <li>{{x.name}}</li>
+    
+    {% endfor %}
+    </ul>-->
+
+    <!-- Navbar -->
+<ul class="w3-navbar w3-black w3-card-2 w3-top w3-left-align w3-large">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="/index/" class="w3-padding-large w3-hover-white">Home</a></li>
+  <li class="w3-hide-small"><a href="/list/" class="w3-padding-large w3-hover-white">To-do</a></li>
+  <li class="w3-hide-small"><a href="/contact/" class="w3-padding-large w3-hover-white">Post</a></li>
+  <li class="w3-hide-small"><a href="/search/" class="w3-padding-large w3-hover-white">Search</a></li>
+  <li class="w3-hide-small"><a href="/country/" class="w3-padding-large w3-white">Country</a></li>
+   <li class="w3-hide-small"><a href="/map/" class="w3-padding-large w3-hover-white">Sign-in</a></li>
+    <li class="w3-hide-small"><a href="/hotel/" class="w3-padding-large w3-hover-white">Hotel</a></li>
+    <li class="w3-hide-small"><a href="/direction/" class="w3-padding-large w3-hover-white">Direction</a></li>
+    <li class="w3-hide-small"><a href="/currency/" class="w3-padding-large w3-hover-white">Currency</a></li>
+    <li class="w3-hide-small"><a href="/quiz/" class="w3-padding-large w3-hover-white">Quiz</a></li>
+</ul>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+  <ul class="w3-navbar w3-left-align w3-large w3-black">
+    <li><a class="w3-padding-large" href="/index/">Home</a></li>
+    <li><a class="w3-padding-large" href="/list/">To-do</a></li>
+    <li><a class="w3-padding-large" href="/contact/">Post</a></li>
+    <li><a class="w3-padding-large" href="/search/">Search</a></li>
+    <li><a class="w3-padding-large" href="/country/">Country</a></li>
+    <li><a class="w3-padding-large" href="/map/">Sign-in</a></li>
+    <li><a class="w3-padding-large" href="/hotel/">Hotel</a></li>
+    <li><a class="w3-padding-large" href="/direction/">Direction</a></li>
+    <li><a class="w3-padding-large" href="/currency/">Currency</a></li>
+    <li><a class="w3-padding-large" href="/quiz/">Quiz</a></li>
+  </ul>
+</div>
+
+
+
+
+    <p class="options" >   India     China   USA  Brazil      France      Italy      Australia      Japan     Egypt   Spain     Germany   Mexico     South-Africa     Russia    Greece     England     Canada    New-Zealand     Netherlands   Kenya    Scotland     Jamaica    Turkey     Norway       Thailand     Argentina    Pakistan     Denmark    Ireland    Poland    Iceland     Whales     Peru    Cuba    Chile       Sweden   Portugal      Indonesia       Morocco         Malaysia     Bangladesh     Madagascar       Switzerland      Hungary      Czech-Republic          Belgium    Venezuela    Finland     Ukraine     Austria       Nigeria    Fiji      Vietnam  
+      </p>
+    <div id="s"> DREAM
+    TRAVEL
+    EXPLORE</div>
+
+     
+
+
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="" method="get">
+        <div id="shift"><input type="text" name="q">
+        <input type="submit" value="Search"></div>
+    </form>
+
+    {% if country %}
+        <!--<p>Found {{ travel|length }} name{{ travel|pluralize }}.</p> -->
+     
+            {% for place in country %}
+            <div style="margin-left:24px"><img src="/media/{{place.image}}"><div>
+            <p class="sm">{{ place.name }}</p>
+            
+            <p class="sm"> Capital:{{place.capital}}</p>
+            <p  class="sm">{{place.description}}</p>
+          
+            
+            {% endfor %}
+            
+      
+    
+   
+    {% endif %}
+</body>
+</html>

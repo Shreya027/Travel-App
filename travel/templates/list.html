@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+
+<style>
+
+body {
+  margin: 0;
+  min-width: 250px;
+  padding-left:0px;
+  padding-right:680px;
+  padding-top:50px;
+  opacity: 0.9;
+
+  background: url("{% static 'list1.jpg' %}") no-repeat center center fixed;
+  background-size:cover;
+ /* background: url('{{STATIC_URL}}media_cdn/wood.JPG') no-repeat center center fixed;*/
+ 
+
+  
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 10px;
+  padding: 0;
+  text-align: :center;
+}
+
+
+/* Style the list items */
+
+#space {
+  cursor: pointer;
+  position: relative;
+  margin:2px;
+  padding: 12px 8px 40px 40px;
+  background: #8cd98c;
+  font-size: 15px;
+  border :3px black solid;
+}
+
+em {
+  font-size: 30px;
+  color: #003366;
+
+
+}
+strong {
+
+  font-size: 20px;
+
+
+}
+
+
+
+/* Style the header */
+.header {
+  background-color: #6699ff;
+  padding: 30px 20px;
+  color: white;
+  text-align:center;
+  margin:40px ;
+  border: black 3px solid;
+
+}
+
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  border: none;
+  width: 80%;
+  padding: 8px;
+  font-size: 15px;
+  font-style: italic;
+
+}
+#space {
+
+  padding: 15px;
+  border-color: black;
+}
+img {
+  width: 100px;
+}
+
+
+
+
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body >
+
+
+<!-- Navbar -->
+<ul class="w3-navbar w3-black w3-card-2 w3-top w3-left-align w3-large">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+  <li ><a href="/index/" class="w3-padding-large w3-hover-white">Home</a></li>
+  <li class="w3-hide-small"><a href="/list/" class="w3-padding-large w3-white">To-do</a></li>
+  <li class="w3-hide-small"><a href="/contact/" class="w3-padding-large w3-hover-white">Post</a></li>
+  <li class="w3-hide-small"><a href="/search/" class="w3-padding-large w3-hover-white">Search</a></li>
+  <li class="w3-hide-small"><a href="/country/" class="w3-padding-large w3-hover-white">Country</a></li>
+   <li class="w3-hide-small"><a href="/map/" class="w3-padding-large w3-hover-white">Sign-in</a></li>
+    <li class="w3-hide-small"><a href="/hotel/" class="w3-padding-large w3-hover-white">Hotel</a></li>
+    <li class="w3-hide-small"><a href="/direction/" class="w3-padding-large w3-hover-white">Direction</a></li>
+    <li class="w3-hide-small"><a href="/currency/" class="w3-padding-large w3-hover-white">Currency</a></li>
+    <li class="w3-hide-small"><a href="/quiz/" class="w3-padding-large w3-hover-white">Quiz</a></li>
+</ul>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+  <ul class="w3-navbar w3-left-align w3-large w3-black">
+    <li><a class="w3-padding-large" href="/index/">Home</a></li>
+    <li><a class="w3-padding-large" href="/list/">To-do</a></li>
+    <li><a class="w3-padding-large" href="/contact/">Post</a></li>
+    <li><a class="w3-padding-large" href="/search/">Search</a></li>
+    <li><a class="w3-padding-large" href="/country/">Country</a></li>
+    <li><a class="w3-padding-large" href="/map/">Sign-in</a></li>
+    <li><a class="w3-padding-large" href="/hotel/">Hotel</a></li>
+    <li><a class="w3-padding-large" href="/direction/">Direction</a></li>
+    <li><a class="w3-padding-large" href="/currency/">Currency</a></li>
+    <li><a class="w3-padding-large" href="/quiz/">Quiz</a></li>
+
+  </ul>
+</div>
+
+<!--<img src="{% static 'wood.jpeg' %}"  alt="not loaded"/>-->
+<div id="myDIV" class="header">
+  <h2 style="margin:5px " ><em>TO TRAVEL IS TO LIVE </em></h2>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.destination }}
+    <input type="submit" value="Add" />
+</form>
+
+  <form action="" method="get">
+    <input type="text" name="q"/> 
+    <input type="submit" value="Remove" />
+</form>
+
+  
+  
+</div>
+    {% if spot %}
+        <ul>
+            {% for place in spot %}
+            <li id="space"><strong>{{ place.destination }}</strong></em></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</body>
+</html>
+
